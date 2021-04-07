@@ -1,5 +1,6 @@
 import React from "react";
 import Style from 'style-it';
+import './MessageList.css';
 
 const axios = require("axios");
 var _ = require('lodash')
@@ -11,7 +12,7 @@ class Message extends React.Component {
     super(props)
     this.msgRef = React.createRef()
   }
-  
+
   componentDidMount() {
     this.msgRef.current.setAttribute('style', this.props.style);
   }
@@ -46,6 +47,8 @@ class MessageList extends React.Component {
 
   scrollToBottom() {
     this.btmDivRef.current.scrollIntoView({behavior: 'smooth'})
+    const objDiv = document.getElementById("list");
+    objDiv.scrollTop = objDiv.scrollHeight;
   }
 
   async updateMessages() {
@@ -73,17 +76,23 @@ class MessageList extends React.Component {
         <h1>KIRC</h1>
         <h6>Designed by Engineers &trade;</h6>
       </div>
-      <ul style={{listStyleType: "none"}}>
-        {this.state.data.map((datum) => (
-          <li
-            key={datum.id}
-          >
-            <span style={{margin: "5px"}}>[{this.getReadableDate(datum.timestamp)}]</span>
-            <span >[{datum.nickname === null ? "Guest" : datum.nickname}]: </span>
-            <Message style={datum.style} message={datum.message} id={datum.id}></Message>
-          </li>
-        ))}
-      </ul>
+        <div className="page">
+          <ul className="list" id="list" style={{listStyleType: "none"}}>
+            {this.state.data.map((datum) => (
+              <li
+                key={datum.id}
+              >
+                <div className="speech-bubble" >
+                  <div className="nickname-and-date" >
+                    <h3 className="nickname">{datum.nickname === null ? "Guest" : datum.nickname} sier: </h3>
+                    <p className="date">{this.getReadableDate(datum.timestamp)}</p>
+                  </div>
+                  <Message style={datum.style} message={datum.message} id={datum.id}></Message>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       <div ref={this.btmDivRef}></div>
       </>
     );
