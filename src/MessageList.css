@@ -1,0 +1,52 @@
+.page {
+    background-image: url(./knowit-chat.png);
+    background-repeat: no-repeat;
+    background-size: auto;
+    margin: auto;
+    width: 1000px;
+    padding: 10px;
+    height: 1000px;
+}
+
+.list {
+    margin-top: 230px;
+    margin-left: 20px;
+    height: 670px;
+    overflow:auto;
+    background:#fff;
+    padding: 0.5rem;
+    width: 750px;
+}
+
+.speech-bubble {
+    margin: 1rem;
+    padding: 0.5rem;
+    position: relative;
+    background: #f0f0f0;
+    border-radius: .4em;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 2px solid transparent;
+    border-top-color: #f0f0f0;
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -1px;
+    margin-bottom: -2px;
+}
+
+.nickname-and-date {
+    display: flex;
+}
+
+.date {
+    flex: 1;
+    margin-right: 20px;
+    text-align: right;
+}
